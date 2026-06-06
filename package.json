@@ -1,0 +1,13 @@
+{
+  "name": "acme-financial-platform",
+  "version": "1.0.0",
+  "description": "Data Warehouse for Financial Markets Data - Acme Ltd",
+  "private": true,
+  "workspaces": ["backend", "frontend"],
+  "scripts": {
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm start",
+    "seed": "cd backend && npm run seed",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  }
+}
