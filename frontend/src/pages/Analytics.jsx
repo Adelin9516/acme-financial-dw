@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 import { api } from "../hooks/useApi";
 
-const METRICS = ["closingPrice", "openingPrice", "highPrice", "lowPrice", "volume", "adjClosingPrice"];
+const METRICS = ["closingPrice", "openingPrice", "highPrice", "lowPrice", "volume"];
 
 export default function Analytics() {
   const [assets, setAssets] = useState([]);

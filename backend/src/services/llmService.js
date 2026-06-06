@@ -179,7 +179,7 @@ async function executeTool(name, args) {
 async function chat({ messages, systemPrompt }) {
   const genAIInstance = getGenAI();
   const model = genAIInstance.getGenerativeModel({
-    model: "gemini-2.5-flash",
+    model: "gemini-3.5-flash",
     systemInstruction:
       systemPrompt ||
       `You are Acme Financial Assistant, an expert AI that helps users explore and analyze financial market data stored in the Acme Ltd data warehouse.

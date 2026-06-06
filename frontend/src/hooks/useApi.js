@@ -15,17 +15,17 @@ export async function apiFetch(path, options = {}) {
 
 export const api = {
   assets: {
-    list: () => apiFetch("/assets"),
-    get: (id) => apiFetch(`/assets/${id}`),
-    history: (id) => apiFetch(`/assets/${id}/history`),
-    create: (data) => apiFetch("/assets", { method: "POST", body: data }),
-    update: (id, data) => apiFetch(`/assets/${id}`, { method: "PUT", body: data }),
-    delete: (id) => apiFetch(`/assets/${id}`, { method: "DELETE" }),
+    list:    ()          => apiFetch("/assets"),
+    get:     (id)        => apiFetch(`/assets/${id}`),
+    history: (id)        => apiFetch(`/assets/${id}/history`),
+    create:  (data)      => apiFetch("/assets",      { method: "POST",   body: data }),
+    update:  (id, data)  => apiFetch(`/assets/${id}`, { method: "PUT",   body: data }),
+    delete:  (id)        => apiFetch(`/assets/${id}`, { method: "DELETE" }),
   },
   dataSources: {
-    list: () => apiFetch("/data-sources"),
-    get: (id) => apiFetch(`/data-sources/${id}`),
-    create: (data) => apiFetch("/data-sources", { method: "POST", body: data }),
+    list:   ()      => apiFetch("/data-sources"),
+    get:    (id)    => apiFetch(`/data-sources/${id}`),
+    create: (data)  => apiFetch("/data-sources", { method: "POST", body: data }),
   },
   timeSeries: {
     get: (params) => {
@@ -42,8 +42,8 @@ export const api = {
     compare: (body) => apiFetch("/analytics/compare", { method: "POST", body }),
   },
   ingest: {
-    nasdaq: (body) => apiFetch("/ingest/nasdaq", { method: "POST", body }),
-    manual: (body) => apiFetch("/ingest/manual", { method: "POST", body }),
+    alphavantage: (body) => apiFetch("/ingest/alphavantage", { method: "POST", body }),
+    manual:       (body) => apiFetch("/ingest/manual",       { method: "POST", body }),
   },
   llm: {
     chat: (messages) => apiFetch("/llm/chat", { method: "POST", body: { messages } }),

@@ -1,20 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const { ingestFromNasdaq, ingestManual } = require("../services/ingestService");
+const { ingestFromAlphaVantage, ingestManual } = require("../services/ingestService");
 
-// UC1: Ingest from Nasdaq Data Link
-router.post("/nasdaq", async (req, res, next) => {
+// UC1: Ingest from Alpha Vantage (free tier — 25 req/day)
+// Get free API key at: https://www.alphavantage.co/support/#api-key
+// Then add ALPHAVANTAGE_API_KEY=your_key to backend/.env
+router.post("/alphavantage", async (req, res, next) => {
   try {
-    const { logicalAssetId, dataSourceId, dataset, ticker, startDate, endDate } = req.body;
-    if (!logicalAssetId || !dataSourceId || !dataset || !ticker) {
-      return res.status(400).json({ error: "logicalAssetId, dataSourceId, dataset, ticker are required" });
+    const { logicalAssetId, dataSourceId, ticker, startDate, endDate } = req.body;
+    if (!logicalAssetId || !dataSourceId || !ticker) {
+      return res.status(400).json({ error: "logicalAssetId, dataSourceId, ticker are required" });
     }
-    const result = await ingestFromNasdaq({ logicalAssetId, dataSourceId, dataset, ticker, startDate, endDate });
+    const result = await ingestFromAlphaVantage({ logicalAssetId, dataSourceId, ticker, startDate, endDate });
     res.json(result);
   } catch (err) { next(err); }
 });
 
-// Manual ingest (for testing / other providers)
+// Manual ingest (for testing or other providers)
 router.post("/manual", async (req, res, next) => {
   try {
     const { logicalAssetId, dataSourceId, dataPoints } = req.body;
